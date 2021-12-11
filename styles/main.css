@@ -1,0 +1,148 @@
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@300;600&family=Ubuntu:wght@400;500;700&display=swap");
+/* Variables */
+html {
+  --ubuntu: "Ubuntu", sans-serif;
+  --overpass: "Overpass", sans-serif;
+
+  /* Red */
+  /* !bg gradient intro/cta mobile nav */
+  --red-100: hsl(13, 100%, 72%);
+  --red-300: hsl(355, 100%, 74%);
+  --red-400: hsl(356, 100%, 66%);
+  /* !bg gradient intro/cta mobile nav */
+  --red-500: hsl(353, 100%, 62%);
+
+  /* Blue */
+  --blue-700: hsl(208, 49%, 24%);
+  --blue-900: hsl(240, 10%, 16%);
+
+  /* gray-blue */
+  --gray-blue-500: hsl(240, 2%, 79%);
+  --gray-blue-700: hsl(207, 13%, 34%);
+  /* !! Background gradient - body: */
+  --gray-blue-800: hsl(237, 23%, 32%);
+  --gray-blue-900: hsl(237, 17%, 21%);
+}
+
+html {
+  --font-size-h1: clamp(3.6rem, 2.6141rem + 2.6291vw, 6.4rem);
+  --letter-spacing-h1: clamp(-0.108rem, -0.0784rem + -0.0789vw, -0.192rem);
+  --font-size-h2: clamp(2.8rem, 2.3775rem + 1.1268vw, 4rem);
+  --letter-spacing-h2: clamp(-0.084rem, -0.0713rem + -0.0338vw, -0.12rem);
+  --font-size-h3: 2.8rem;
+  --line-height-h3: clamp(3.2rem, 3.3408rem + -0.3756vw, 2.8rem);
+  --font-size-body: 1.6rem;
+  --line-height-body: 2.8rem;
+  --letter-spacing-body: 0.05rem;
+  --font-size-footer: 1.8rem;
+  --line-height-footer: 3.3rem;
+
+  --font-size-header-heading: clamp(1.8rem, 1.8704rem + -0.1878vw, 1.6rem);
+  --line-height-header-heading: 2.8rem;
+
+  --font-size-header-link: clamp(1.6rem, 1.6352rem + -0.0939vw, 1.5rem);
+  --line-height-header-link: clamp(2.8rem, 2.6239rem + 0.4695vw, 3.3rem);
+
+  --font-size-large-button: 1.6rem;
+  --font-size-small-button: clamp(1.8rem, 1.8704rem + -0.1878vw, 1.6rem);
+}
+
+html {
+    --z-header: 50;
+}
+
+/* Font - global styling */
+
+header *:is(button.header__menu-heading) {
+  font-family: var(--overpass);
+  font-size: var(--font-size-header-heading);
+  line-height: var(--line-height-header-heading);
+  font-weight: 600;
+}
+
+@media screen and (min-width: 1110px){
+    header > *:is(button.menu__heading) {
+        line-height: auto;
+      }
+}
+
+header *:is(a.menu__link){
+    font-family: var(--overpass);
+    font-size: var(--font-size-header-link);
+    line-height: var(--line-height-header-link);
+    font-weight: 600;
+}
+
+h1 {
+  font-family: var(--overpass);
+  font-size: var(--font-size-h1);
+  letter-spacing: var(--letter-spacing-h1);
+  font-weight: 600;
+}
+
+h2 {
+  font-family: var(--overpass);
+  font-size: var(--font-size-h2);
+  letter-spacing: var(--letter-spacing-h2);
+  font-weight: 600;
+}
+
+h3 {
+  font-family: var(--overpass);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: 600;
+}
+
+p {
+  font-family: var(--overpass);
+  font-size: var(--font-size-body);
+  letter-spacing: var(--letter-spacing-body);
+  line-height: var(--line-height-body);
+  font-weight: 300;
+}
+
+footer > h4 {
+  font-weight: 500;
+}
+
+footer > *:is(p, li) {
+  font-weight: 400;
+}
+
+footer > *:is(p, li, h4) {
+  font-family: var(--ubuntu);
+  font-size: var(--font-size-footer);
+  line-height: var(--line-height-footer);
+}
+/* Body */
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(2.4rem, 1fr) minmax(32.7rem, 1fr) minmax(2.4rem, 1fr);
+    grid-auto-rows: max-content;
+}
+/* 
+@media screen and (min-width: 1000px){
+
+} */
+
+header.header, main.main {
+    grid-row: 1/2;
+}
+
+header.header {
+    margin-top: 5.6rem;
+    z-index: var(--z-header);
+    grid-column: 2/3;
+}
+
+main.main {
+    grid-column: 1/4;
+    background: red;
+    height: 60rem;
+    background: linear-gradient(to bottom right, var(--red-100), var(--red-500));
+}
