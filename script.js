@@ -7,7 +7,6 @@ const activateMobileMenuButton = () => {
         btnMenu.classList.toggle('active')
     })
 }
-
 activateMobileMenuButton()
 
 const clearMenuList = (menuList) => {
@@ -15,6 +14,10 @@ const clearMenuList = (menuList) => {
     menuList.style.paddingTop = null
     menuList.style.paddingBottom = null
     menuList.style.maxHeight = null
+}
+
+const closeMobileBtnMenu = () => {
+    btnMenu.classList.remove('active')
 }
 
 const deactivateAllMenuHeadingButtons = () => {
@@ -39,7 +42,6 @@ const handleMenuHeadingButtonClick = (btn, index) => {
     const otherButtons = [...btnsMenuHeadings.filter((b, i) => i !== index)]
     deactivateOtherMenuHeadingButtons(otherButtons)
     btn.classList.toggle('active')
-
     const menuList = btn.nextElementSibling
     const listItems = menuList.querySelectorAll('li')
     const listItemsQuant = menuList.querySelectorAll('li').length
@@ -74,28 +76,34 @@ const activateMenuHeadingButtons = () => {
 activateMenuHeadingButtons()
 
 // : Add listeners to each headerMenuList to click it.
-headerMenuLists.forEach((list, index) => {
-    list.addEventListener('click', () => {
-        btnsMenuHeadings[index].click()
+const closeMenuHeadingButtonOnMenuListClick = () => {
+    headerMenuLists.forEach((list, index) => {
+        list.addEventListener('click', () => {
+            btnsMenuHeadings[index].click()
+        })
     })
-})
-
-//Global listener for Esc
+}
+closeMenuHeadingButtonOnMenuListClick()
 
 const addGlobalListenersToCloseMenu = () => {
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             deactivateAllMenuHeadingButtons()
+            closeMobileBtnMenu()
         }
     })
     
     window.addEventListener('click', (e) => {
         //If we haven't clicked on header__menu, deactivate all
-        const target = e.target.closest('.header__menu')
-        if (!target) {
+        const headerMenu = e.target.closest('.header__menu')
+        if (!headerMenu) {
             deactivateAllMenuHeadingButtons()
         }
-    
+
+        const header = e.target.closest('header.header')
+        if(!header){
+            closeMobileBtnMenu()
+        }
     })
 }
 
