@@ -228,7 +228,7 @@ header.header {
     padding-top: 0;
     border-top: none;
     flex: 1;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 3.2rem;
   }
 }
@@ -253,7 +253,6 @@ button.login {
     opacity: 1;
   }
 }
-
 
 button.sign-up {
   font-family: var(--ubuntu);
