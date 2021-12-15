@@ -32,6 +32,8 @@ header.header {
   gap: 0.6rem;
 }
 
+
+
 @media screen and (min-width: 950px){
   .header__menu-button {
     display: none;
@@ -65,7 +67,7 @@ header.header {
   height: max-content;
   background: white;
   border-radius: 0.5rem;
-  padding: 2.4rem;
+  padding: 2.4rem;  
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -200,13 +202,13 @@ header.header {
 
 @media screen and (min-width: 950px){
 
-  header *.menu__link > a {
+  header a {
     font-family: var(--ubuntu);
     font-weight: 400;
     transition: font-weight 50ms;
   }
   
-  header *.menu__link > a:hover {
+  header a:hover {
     font-weight: bold;
   }
 }
