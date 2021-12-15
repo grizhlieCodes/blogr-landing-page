@@ -492,7 +492,7 @@ section.benefits {
 
   .benefits__img-container img {
     position: absolute;
-    width: 150%;
+    width: 170%;
     right: 0;
     top: 50%;
     transform: translate(0, -50%);
