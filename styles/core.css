@@ -67,7 +67,7 @@ header *:is(button.header__menu-heading) > p {
   }
 }
 
-header *.menu__link > a {
+header a {
   font-family: var(--overpass);
   font-size: var(--font-size-header-link);
   line-height: var(--line-height-header-link);
@@ -103,20 +103,30 @@ p {
   font-weight: 300;
 }
 
-footer > h4 {
+footer h4 {
   font-weight: 500;
 }
 
-footer > *:is(p, li) {
+footer *:is(p, li, a) {
   font-weight: 400;
 }
 
-footer > *:is(p, li, h4) {
+footer *:is(p, li, h4) {
   font-family: var(--ubuntu);
   font-size: var(--font-size-footer);
   line-height: var(--line-height-footer);
 }
+
 /* Body */
+
+a:is(:focus, :focus-within), button:is(:focus, :focus-within){
+  outline: black 2px solid;
+}
+
+/* 
+*:is(a, button) {
+  tab
+} */
 
 body {
   width: 100%;
@@ -124,9 +134,10 @@ body {
   display: grid;
   grid-template-columns: 2.4rem 1fr 2.4rem;
   grid-auto-rows: max-content;
+  overflow-x: hidden;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 950px) {
   body {
     grid-template-columns: minmax(4rem, 1fr) minmax(auto, 111rem) minmax(
         4rem,
@@ -143,14 +154,16 @@ main.main {
   grid-template-columns: 2.4rem 1fr 2.4rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 950px) {
   main.main {
-    grid-template-columns:  minmax(4rem, 1fr) minmax(auto, 111rem) minmax(
+    grid-template-columns: minmax(4rem, 1fr) minmax(auto, 111rem) minmax(
         4rem,
         1fr
       );
   }
 }
+
+/* !HERO HERO HERO HERO */
 
 section.hero {
   width: 100%;
@@ -171,7 +184,7 @@ section.hero {
   margin-bottom: 10rem;
 }
 
-@media screen and (min-width: 768px){
+@media screen and (min-width: 950px) {
   section.hero {
     margin-bottom: 15rem;
   }
@@ -183,7 +196,7 @@ section.hero {
   gap: 0.8rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 950px) {
   .hero__text-container {
     gap: 1.6rem;
   }
@@ -222,17 +235,21 @@ section.hero {
   color: var(--red-300);
 }
 
+/* !FUTURE FUTURE FUTURE FUTURE */
+
 section.future {
   grid-column: 2/3;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   gap: 4.6rem;
+  margin-bottom: 10rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 950px) {
   section.future {
     gap: 10.3rem;
+    margin-bottom: 21.3rem;
   }
 }
 
@@ -242,10 +259,10 @@ section.future {
   gap: 4.6rem;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 950px) {
   .future__grid-container {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: minmax(44.4rem, max-content);
+    /* grid-template-rows: minmax(44.4rem, max-content); */
     gap: 12.5rem;
   }
 }
@@ -256,8 +273,11 @@ section.future {
   gap: 4rem;
 }
 
-@media screen and (min-width: 768px) {
+.future__description-img-container img {
+  width: 100%;
+}
 
+@media screen and (min-width: 950px) {
   .future__description {
     grid-row: 1/2;
     grid-column: 1/2;
@@ -274,12 +294,17 @@ section.future {
     position: relative;
   }
 
-  .future__description-img-container picture {
+  .future__description-img-container *:is(picture, img) {
     /* display: none; */
     position: absolute;
+    width: 150%;
+    max-width: 90rem;
     left: 0;
     top: 50%;
-    transform: translate(0, -50%);
+    transform: translate(-1.9rem, -50%);
+    /* width: 100%; */
+    /* height: 100%; */
+    /* object-fit: cover; */
   }
 }
 
@@ -287,4 +312,251 @@ section.future {
   display: flex;
   flex-flow: column;
   gap: 1.6rem;
+}
+
+/* !INFRASTRUCTURE INFRASTRUCTURE INFRASTRUCTURE INFRASTRUCTURE */
+
+section.infrastructure {
+  grid-column: 1/4;
+  color: white;
+  display: grid;
+  grid-template-columns: 2.4rem 1fr 2.4rem;
+  grid-template-rows: 17.3rem max-content 4.7rem max-content 10.9rem;
+  margin-bottom: clamp(7.9rem, -25.2531rem + 34.8980vw, 25rem);
+}
+
+section.infrastructure::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: url('../assets/images/bg-pattern-circles.svg'), linear-gradient(
+    135deg,
+    var(--gray-blue-900) 0%,
+    var(--gray-blue-800) 100%
+  );
+  background-position: center top -20rem, center;
+  background-repeat: no-repeat, repeat;
+  background-size: 60rem, auto;
+  grid-column: 1/4;
+  grid-row: 2/6;
+  border-radius: 0 10rem;
+
+}
+
+@media screen and (min-width: 450px) {
+  section.infrastructure {
+    grid-template-columns: minmax(2.4rem, 1fr) minmax(38.6rem, 2fr) minmax(
+        2.4rem,
+        1fr
+      );
+      /* margin-bottom: 25rem; */
+  }
+}
+
+@media screen and (min-width: 950px) {
+  section.infrastructure {
+    grid-template-columns: 4rem 1fr minmax(4rem, 5rem) 1.5fr 4rem;
+    grid-template-rows: 5rem minmax(30rem, max-content) 5rem;
+  }
+
+  section.infrastructure::before {
+    grid-column: 1/6;
+    grid-row: 2/3;
+    background-position: right 125% top -55rem, center;
+    background-size: 101.4rem, auto;
+  }
+}
+
+@media screen and (min-width: 1078px) {
+  section.infrastructure {
+    grid-template-columns: 4rem 1fr minmax(4rem, 6rem) 54rem 4rem;
+  }
+}
+@media screen and (min-width: 1160px) {
+  section.infrastructure {
+    grid-template-columns: minmax(4rem, 1fr) 47.2rem minmax(4rem, 9rem) 54rem minmax(
+        4rem,
+        1fr
+      );
+  }
+}
+
+.infrastructure__img-container {
+  grid-column: 2/3;
+  grid-row: 1/3;
+  width: 100%;
+}
+
+@media screen and (min-width: 950px) {
+  .infrastructure__img-container {
+    grid-column: 2/3;
+    grid-row: 1/4;
+  }
+}
+
+.infrastructure__img-container > img {
+  width: 100%;
+}
+
+.infrastructure__text-container {
+  grid-column: 2/3;
+  grid-row: 4/5;
+  place-self: center;
+  display: flex;
+  flex-flow: column nowrap;
+  text-align: center;
+  gap: 3rem;
+}
+
+@media screen and (min-width: 950px) {
+  .infrastructure__text-container {
+    grid-column: 4/5;
+    grid-row: 2/3;
+    gap: 1.5rem;
+    text-align: left;
+  }
+}
+
+.infrastructure__text-container h2 {
+  font-family: Overpass;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 4rem;
+  line-height: 5.1rem;
+  letter-spacing: -0.12rem;
+}
+
+@media screen and (min-width: 1440px) {
+  section.infrastructure {
+    grid-template-columns: minmax(4rem, 1fr) 47.2rem minmax(4rem, 9.8rem) 54rem minmax(
+        4rem,
+        1fr
+      );
+    grid-template-rows: 5rem max-content 5rem;
+  }
+}
+
+
+
+/* Decided to mainly use flexbox for this section after learning from the Future
+section. grid was just unnecessary since we didn't really utilise any important
+parts of it. */
+
+section.benefits {
+  grid-column: 2/3;
+  margin-bottom: 10rem;
+}
+
+@media screen and (min-width: 950px) {
+  section.benefits {
+    margin-bottom: 30.8rem;
+  }
+}
+
+.benefits__flex-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4.6rem;
+  text-align: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 950px){
+  .benefits__flex-container{
+    flex-flow: row nowrap;
+    text-align: left;
+  }
+}
+
+.benefits__img-container {
+  width: 100%; 
+}
+
+.benefits__img-container img {
+  width: 100%;
+}
+
+@media screen and (min-width: 950px){
+  .benefits__img-container {
+    min-width: 40rem;
+    position: relative;
+  }
+  
+  .benefits__img-container img {
+    position: absolute;
+    width: 150%;
+    right: 0;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+}
+
+.benefits__description {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 4rem;
+  max-width: 54rem;
+}
+
+.benefits__description-text {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.6rem;
+}
+
+
+
+
+/* !FOOTER FOOTER FOOTER FOOTER */
+
+footer.footer {
+  grid-column: 1/4;
+  background: var(--blue-900);
+  display: grid;
+  grid-template-columns: 2.4rem 1fr 2.4rem;
+  border-radius: 0 10rem 0 0;
+  padding: 7rem 0;
+}
+
+@media screen and (min-width: 768px) {
+  footer.footer {
+    grid-template-columns: minmax(4rem, 16.8rem) 1fr minmax(4rem, 16.8rem);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  footer.footer {
+    grid-template-columns: minmax(16.8rem, 1fr) 111rem minmax(16.8rem, 1fr);
+  }
+}
+
+.footer__wrapper {
+  grid-column: 2/3;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 7.2rem;
+  align-items: center;
+  text-align: center;
+  color: white;
+  max-width: 98.3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__wrapper {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    /* gap: 3rem; */
+    text-align: left;
+    align-items: flex-start;
+  }
+}
+
+.footer__links-category {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2.1rem;
+}
+
+.footer__links-category a {
+  opacity: 0.75;
 }
