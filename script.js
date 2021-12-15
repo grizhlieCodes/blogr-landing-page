@@ -1,119 +1,141 @@
-({
-    "plugins": ["jsdom-quokka-plugin"],
-    "jsdom" : {
-        "config" : {
-            "file" : "./index.html"
-        }
+const mobileMenuButton = document.querySelector('button.header__menu-button')
+const navMenuCategoryButtons = [...document.querySelectorAll('button.header__menu-heading')]
+const navMenuCategoryLinkContainers = [...document.querySelectorAll('.header__menu-list')]
+const allNavMenuLinks = document.querySelectorAll('header a')
+
+//Capitalized to show a constant value. For this project at least.
+//Better to capitalize TRUE constants like hours in day, Pi, etc.
+const LINK_CONTAINER_VALUES = {
+    paddingTop: 17,
+    paddingBottom: 25,
+    marginTop: 24
+}
+
+const createEventListenersForHeaderMenuActivation = () => {
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenuButton.classList.toggle('active')
+    })
+
+    navMenuCategoryButtons.forEach((navMenuCategoryButton, index) => {
+        navMenuCategoryButton.addEventListener('click', () => {
+            activateOrDeactivateClickedNavMenuCategoryButton(navMenuCategoryButton, index)
+        })
+    })
+
+}
+
+const updateTabIndexOfSelectedLinks = (activateTabIndex, linksArray) => {
+    if (activateTabIndex) {
+        linksArray.forEach(link => link.tabIndex = '0')
+    } else {
+        linksArray.forEach(link => link.tabIndex = '-1')
     }
-})
-
-const btnMenu = document.querySelector('button.header__menu-button')
-const btnsMenuHeadings = [...document.querySelectorAll('button.header__menu-heading')]
-const headerMenuLists = [...document.querySelectorAll('.header__menu-list')]
-
-const addListenersToAllElements = () => {
-    btnMenu.addEventListener('click', () => {
-        btnMenu
-        btnMenu.classList.toggle('active')
-    })
-
-    btnsMenuHeadings.forEach((btn, index) => {
-        btn.addEventListener('click', () => {
-            handleMenuHeadingButtonClick(btn, index)
-        })
-    })
-
-    headerMenuLists.forEach((list, index) => {
-        list.addEventListener('click', () => {
-            btnsMenuHeadings[index].click()
-        })
-    })
 }
 
-
-const clearMenuList = (menuList) => {
-    menuList.style.marginTop = null
-    menuList.style.paddingTop = null
-    menuList.style.paddingBottom = null
-    menuList.style.maxHeight = null
+const removeTabFunctionalityFromAllNavLinks = () => {
+    allNavMenuLinks.forEach(link => link.tabIndex = '-1')
 }
 
-const closeMobileBtnMenu = () => {
-    btnMenu.classList.remove('active')
+const clearMenuList = (navMenuCategoryLinkContainer) => {
+    navMenuCategoryLinkContainer.style.marginTop = null
+    navMenuCategoryLinkContainer.style.paddingTop = null
+    navMenuCategoryLinkContainer.style.paddingBottom = null
+    navMenuCategoryLinkContainer.style.maxHeight = null
+}
+
+const deactivateMobileMenuButton = () => {
+    mobileMenuButton.classList.remove('active')
 }
 
 const deactivateAllMenuHeadingButtons = () => {
-    btnsMenuHeadings.forEach(btn => {
+    navMenuCategoryButtons.forEach(btn => {
         btn.classList.remove('active')
         const menuList = btn.nextElementSibling
         clearMenuList(menuList)
     })
 }
 
-const deactivateOtherMenuHeadingButtons = (otherButtons) => {
-    otherButtons.forEach(btn => {
-        btn.classList.remove('active')
-        const menuList = btn.nextElementSibling
-        clearMenuList(menuList)
+const deactivateSiblingNavMenuCategoryButtons = (clickedNavMenuCategoryButtonIndex) => {
+    const siblingNavMenuCategoryButtons = [...navMenuCategoryButtons.filter((b, i) => i !== clickedNavMenuCategoryButtonIndex)]
+    siblingNavMenuCategoryButtons.forEach((siblingNavMenuCategoryButton, index) => {
+        siblingNavMenuCategoryButton.classList.remove('active')
+        const navMenuCategoryLinkContainer = navMenuCategoryLinkContainers[index]
+        clearMenuList(navMenuCategoryLinkContainer)
     })
 };
 
 const checkViewportWidth = () => {
-    const mediaQuery = window.matchMedia('(min-width: 950px)')
+    const chosenDesktopWidth = 950
+    const mediaQuery = window.matchMedia(`(min-width: ${chosenDesktopWidth}px)`)
     if (mediaQuery.matches) {
         return true
     } else {
         return false
     }
 }
-const handleMenuHeadingButtonClick = (btn, index) => {
 
-    const desktopSize = checkViewportWidth() 
-    const btnActive = btn.classList.contains('active') 
-    const otherButtons = [...btnsMenuHeadings.filter((b, i) => i !== index)]
-    deactivateOtherMenuHeadingButtons(otherButtons)
-    btn.classList.toggle('active')
-    const menuList = btn.nextElementSibling 
-    const listItems = menuList.querySelectorAll('li')
-    const listItemsQuantity = menuList.querySelectorAll('li').length
-    const listItemHeight = parseInt(getComputedStyle(listItems[0]).height)
-    const menuListStyles = window.getComputedStyle(menuList)
-    const gap = parseInt(menuListStyles.rowGap) * (listItemsQuantity - 1)
-    const paddingTop = 17
-    const paddingBottom = 25
-    const marginTop = desktopSize ? 0 : 24
-    const listItemsHeight = listItemHeight * listItemsQuantity
-    const scrollheight = menuList.scrollHeight
-    const total = paddingBottom + paddingTop + gap + listItemsHeight
-    // console.log({gap, paddingTop, paddingBottom, marginTop, listItemsHeight, scrollheight, total})
-    if (btnActive) {
-        clearMenuList(menuList)
+const activateOrDeactivateClickedNavMenuCategoryButton = (clickedNavMenuCategoryButton, index) => {
+    const navMenuCategoryButtonIsActive = clickedNavMenuCategoryButton.classList.contains('active')
+    deactivateSiblingNavMenuCategoryButtons(index)
+    removeTabFunctionalityFromAllNavLinks()
+
+    clickedNavMenuCategoryButton.classList.toggle('active')
+    const navMenuCategoryLinkContainer = navMenuCategoryLinkContainers[index]
+    const navMenuCategoryLinks = navMenuCategoryLinkContainer.querySelectorAll('a')
+    const navMenuCategoryLinksQuantity = navMenuCategoryLinks.length
+    const navMenuCategoryLinkHeight = parseInt(getComputedStyle(navMenuCategoryLinks[0]).height)
+    const navMenuCategoryLinkContainerStyles = window.getComputedStyle(navMenuCategoryLinkContainer)
+    const navMenuCategoryLinkContainerGapsTotalHeight = parseInt(navMenuCategoryLinkContainerStyles.rowGap) * (navMenuCategoryLinksQuantity - 1)
+    const {paddingTop, paddingBottom, marginTop} = LINK_CONTAINER_VALUES
+    const isDesktopWidth = checkViewportWidth()
+    const navMenuCategoryLinksHeight = navMenuCategoryLinkHeight * navMenuCategoryLinksQuantity
+    const customScrollHeight = paddingBottom + paddingTop + navMenuCategoryLinkContainerGapsTotalHeight + navMenuCategoryLinksHeight
+
+    // console.log({gap, paddingTop, paddingBottom, marginTop, navMenuCategoryLinksHeight, customScrollHeight})
+    if (navMenuCategoryButtonIsActive) {
+        clearMenuList(navMenuCategoryLinkContainer)
     } else {
-        menuList.style.marginTop = `${marginTop}px`
-        menuList.style.paddingTop = `${paddingTop}px`
-        menuList.style.paddingBottom = `${paddingBottom}px`
-        menuList.style.maxHeight = `${total}px`
+        const activateTabIndex = true
+        updateTabIndexOfSelectedLinks(activateTabIndex, navMenuCategoryLinks)
+        if(!isDesktopWidth) navMenuCategoryLinkContainer.style.marginTop = `${marginTop}px`
+        navMenuCategoryLinkContainer.style.paddingTop = `${paddingTop}px`
+        navMenuCategoryLinkContainer.style.paddingBottom = `${paddingBottom}px`
+        navMenuCategoryLinkContainer.style.maxHeight = `${customScrollHeight}px`
     }
 }
 
-const addGlobalListenersToCloseMenu = () => {
+const createEventListenersForHeaderMenuClosing = () => {
     window.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             deactivateAllMenuHeadingButtons()
-            closeMobileBtnMenu()
+            deactivateMobileMenuButton()
+            const activateMenuLinks = false
+            updateTabIndexOfSelectedLinks(activateMenuLinks, allNavMenuLinks)
         }
     })
     window.addEventListener('click', (e) => {
         const headerMenu = e.target.closest('.header__menu')
         if (!headerMenu) {
             deactivateAllMenuHeadingButtons()
+            updateTabIndexOfSelectedLinks(false, allNavMenuLinks)
         }
         const header = e.target.closest('header.header')
         if (!header) {
-            closeMobileBtnMenu()
+            deactivateMobileMenuButton()
+            updateTabIndexOfSelectedLinks(false, allNavMenuLinks)
+
         }
     })
+
+    navMenuCategoryLinkContainers.forEach((navMenuCategoryLinkContainer, index) => {
+        navMenuCategoryLinkContainer.addEventListener('click', () => {
+            navMenuCategoryButtons[index].click()
+        })
+    })
+
 }
 
-addGlobalListenersToCloseMenu()
-addListenersToAllElements()
+createEventListenersForHeaderMenuActivation()
+createEventListenersForHeaderMenuClosing()
+
+
