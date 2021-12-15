@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    
+
     <!-- ? Header is injected via javascript (was large and messy in HTML) -->
 
     <header class="header">
@@ -28,7 +28,7 @@
         </button>
         <div class="header__menu">
 
-            <div class="header__menu-links">
+            <nav class="header__menu-links">
                 <div class="header__menu-section header__menu-section--product">
                     <button class="header__menu-heading">
                         <p>Product</p>
@@ -37,23 +37,13 @@
                             <img src="./assets/images/icon-arrow-dark.svg" alt="">
                         </picture>
                     </button>
-                    <ul class="header__menu-list">
-                        <li class="menu__link">
-                            <a href="#">Overview</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Pricing</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Marketplace</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Features</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Intergrations</a>
-                        </li>
-                    </ul>
+                    <div class="header__menu-list">
+                        <a class="menu__link" href="https://www.google.com">Overview</a>
+                        <a class="menu__link" href="/">Pricing</a>
+                        <a class="menu__link" href="/">Marketplace</a>
+                        <a class="menu__link" href="/">Features</a>
+                        <a class="menu__link" href="/">Intergrations</a>
+                    </div>
                 </div>
 
                 <div class="header__menu-section header__menu-section--company">
@@ -64,20 +54,12 @@
                             <img src="./assets/images/icon-arrow-dark.svg" alt="">
                         </picture>
                     </button>
-                    <ul class="header__menu-list">
-                        <li class="menu__link">
-                            <a href="#">About</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Team</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Blog</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Careers</a>
-                        </li>
-                    </ul>
+                    <div class="header__menu-list">
+                        <a class="menu__link" href="#">About</a>
+                        <a class="menu__link" href="#">Team</a>
+                        <a class="menu__link" href="#">Blog</a>
+                        <a class="menu__link" href="#">Careers</a>
+                    </div>
                 </div>
 
                 <div class="header__menu-section header__menu-section--connect">
@@ -88,19 +70,13 @@
                             <img src="./assets/images/icon-arrow-dark.svg" alt="">
                         </picture>
                     </button>
-                    <ul class="header__menu-list">
-                        <li class="menu__link">
-                            <a href="#">Contact</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">Newsletter</a>
-                        </li>
-                        <li class="menu__link">
-                            <a href="#">LinkedIn</a>
-                        </li>
-                    </ul>
+                    <div class="header__menu-list">
+                        <a class="menu__link" href="#">Contact</a>
+                        <a class="menu__link" href="#">Newsletter</a>
+                        <a class="menu__link" href="#">LinkedIn</a>
+                    </div>
                 </div>
-            </div>
+            </nav>
 
             <div class="header__menu-ctas">
                 <button class="login">
@@ -121,7 +97,7 @@
             <div class="hero__text-container">
                 <h1 class="hero__heading">A modern publishing platform</h1>
                 <p class="hero__description">Grow your audience and build your
-                online brand</p>
+                    online brand</p>
             </div>
             <div class="hero__ctas">
                 <a href="#" class="full">
@@ -142,28 +118,138 @@
             <div class="future__grid-container">
                 <div class="future__description-img-container">
                     <picture>
-                        <source media="(min-width: 768px)" srcset="./assets/images/illustration-editor-desktop.svg">
+                        <source media="(min-width: 950px)" srcset="./assets/images/illustration-editor-desktop.svg">
                         <img src="./assets/images/illustration-editor-mobile.svg" alt="">
                     </picture>
                 </div>
                 <div class="future__description">
                     <div class="future__description-text future__description-editor">
                         <h3>Introducing an extensible editor</h3>
-                        <p>Blogr features an exceedingly intuitive interface which lets you focus on one thing: creating content. The editor supports management of multiple blogs and allows easy manipulation of embeds such as images, videos, and Markdown. Extensibility with plugins and themes provide easy ways to add functionality or change the looks of a blog.</p>
+                        <p>Blogr features an exceedingly intuitive interface which lets you focus on one thing: creating
+                            content. The editor supports management of multiple blogs and allows easy manipulation of
+                            embeds such as images, videos, and Markdown. Extensibility with plugins and themes provide
+                            easy ways to add functionality or change the looks of a blog.</p>
                     </div>
                     <div class="future__description-text future__description-management">
                         <h3>Robust content management</h3>
                         <p>
-                            Flexible content management enables users to easily move through posts. Increase the usability of your blog by adding customized categories, sections, format, or flow. With this functionality, you’re in full control.
+                            Flexible content management enables users to easily move through posts. Increase the
+                            usability of your blog by adding customized categories, sections, format, or flow. With this
+                            functionality, you’re in full control.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <section class="infrastructure">
+            <div class="infrastructure__img-container">
+                <img src="./assets/images/illustration-phones-2.svg" alt="">
+            </div>
+
+            <div class="infrastructure__text-container">
+                <h2 class="infrastructure__heading">
+                    State of the Art Infrastructure
+                </h2>
+                <p class="infrastructure__description">
+                    With reliability and speed in mind, worldwide data centers provide the backbone for ultra-fast
+                    connectivity. This ensures your site will load instantly, no matter where your readers are, keeping
+                    your site competitive.
+                </p>
+            </div>
+
+        </section>
+
+        <section class="benefits">
+
+            <div class="benefits__flex-container">
+                <div class="benefits__img-container">
+                    <picture>
+                        <source media="(min-width: 950px)" srcset="./assets/images/illustration-laptop-desktop.svg">
+                        <img src="./assets/images/illustration-laptop-mobile.svg" alt="">
+                    </picture>
+                </div>
+
+                <div class="benefits__description">
+                    <div class="benefits__description-text benefits__description-editor">
+                        <h3>Free, open, simple</h3>
+                        <p>Blogr is a free and open source application backed by a large community of helpful
+                            developers. It supports features such as code syntax highlighting, RSS feeds, social media
+                            integration, third-party commenting tools, and works seamlessly with Google Analytics. The
+                            architecture is clean and is relatively easy to learn.</p>
+                    </div>
+                    <div class="benefits__description-text benefits__description-management">
+                        <h3>Powerful tooling</h3>
+                        <p>
+                            Batteries included. We built a simple and straightforward CLI tool that makes customization
+                            and deployment a breeze, but capable of producing even the most complicated sites.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+
     </main>
 
     <footer class="footer">
-
+        <div class="footer__wrapper">
+            <div class="logo-container">
+                <img src="./assets/images/logo.svg" alt="">
+            </div>
+            <section class="footer__product footer__links-category">
+                <h4>Product</h4>
+                <ul>
+                    <li>
+                        <a href="#">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#">Pricing</a>
+                    </li>
+                    <li>
+                        <a href="#">Marketplace</a>
+                    </li>
+                    <li>
+                        <a href="#">Features</a>
+                    </li>
+                    <li>
+                        <a href="#">Integrations</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="footer__company footer__links-category">
+                <h4>Company</h4>
+                <ul>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Team</a>
+                    </li>
+                    <li>
+                        <a href="#">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#">Careers</a>
+                    </li>
+                </ul>
+            </section>
+            <section class="footer__connect footer__links-category">
+                <h4>Connect</h4>
+                <ul>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                    <li>
+                        <a href="#">Newsletter</a>
+                    </li>
+                    <li>
+                        <a href="#">LinkedIn</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
     </footer>
 
 </body>
