@@ -84,6 +84,7 @@ header.header {
     background: transparent;
     flex-direction: row;
     transform: scale(1);
+    padding: 0;
   }
 }
 
