@@ -568,7 +568,7 @@ footer.footer {
 
 /* Temporarily global fixes */
 
-section p {
+section:not(.hero) p {
   color: hsla(209, 12%, 34%, 1);
  
 }
