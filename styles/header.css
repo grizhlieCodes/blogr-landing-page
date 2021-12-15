@@ -15,8 +15,8 @@ header.header {
   position: relative;
 }
 
-@media screen and (min-width: 950px){
-  .header{
+@media screen and (min-width: 950px) {
+  .header {
     gap: 6.4rem;
     justify-content: start;
   }
@@ -32,9 +32,7 @@ header.header {
   gap: 0.6rem;
 }
 
-
-
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .header__menu-button {
     display: none;
   }
@@ -67,7 +65,7 @@ header.header {
   height: max-content;
   background: white;
   border-radius: 0.5rem;
-  padding: 2.4rem;  
+  padding: 2.4rem;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -78,7 +76,7 @@ header.header {
   transform-origin: 100% -30%;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .header__menu {
     position: static;
     top: unset;
@@ -102,7 +100,7 @@ header.header {
   gap: 2.4rem;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .header__menu-links {
     flex-direction: row;
     gap: 3.2rem;
@@ -117,7 +115,7 @@ header.header {
   align-items: center;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .header__menu-section {
     position: relative;
   }
@@ -132,15 +130,33 @@ header.header {
   color: var(--blue-700);
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .header__menu-heading {
     opacity: 0.75;
     color: white;
     transition: opacity 250ms;
   }
+  .header__menu-heading > p {
+    position: relative;
+  }
+  .header__menu-heading > p::before {
+    position: absolute;
+    content: "";
+    bottom: 0.5rem;
+    left: 0;
+    background: white;
+    height: 0.2rem;
+    width: 100%;
+    transform-origin: 50% 50%;
+    transform: scaleX(0);
+    transition: transform 250ms;
+  }
 
-  .header__menu-heading:is(:hover, .active) {
+  .header__menu-heading:is(:hover, .active, :focus-within) {
     opacity: 1;
+  }
+  .header__menu-heading:is(:hover, .active, :focus-within) > p::before {
+    transform: scaleX(1);
   }
 }
 
@@ -161,7 +177,7 @@ header.header {
   max-height: 0;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .header__menu-list {
     max-height: unset;
     width: max-content;
@@ -175,19 +191,18 @@ header.header {
     background: white;
   }
 
-  .header__menu-heading:is(.active) ~ .header__menu-list { 
+  .header__menu-heading:is(.active) ~ .header__menu-list {
     transform: scale(1);
   }
-
 }
 
 .header__menu-heading picture {
-    height: 100%;
-    display: grid;
-    place-items: center;
+  height: 100%;
+  display: grid;
+  place-items: center;
 }
 .header__menu-heading img {
-    transform: translateY(-35%);
+  transform: translateY(-35%);
   transition: transform 250ms;
 }
 
@@ -200,19 +215,17 @@ header.header {
   opacity: 0.75;
 }
 
-@media screen and (min-width: 950px){
-
+@media screen and (min-width: 950px) {
   header a {
     font-family: var(--ubuntu);
     font-weight: 400;
     transition: font-weight 50ms;
   }
-  
+
   header a:hover {
     font-weight: bold;
   }
 }
-
 
 .header__menu-ctas {
   width: 100%;
@@ -220,11 +233,11 @@ header.header {
   flex-flow: column nowrap;
   padding-top: 2.4rem;
   align-items: center;
-  border-top: 1px solid #E8E4E4;
+  border-top: 1px solid #e8e4e4;
   gap: 2.4rem;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .header__menu-ctas {
     flex-direction: row;
     padding-top: 0;
@@ -235,7 +248,6 @@ header.header {
   }
 }
 
-
 button.login {
   font-family: var(--overpass);
   font-size: var(--font-size-small-button);
@@ -244,13 +256,13 @@ button.login {
   font-weight: bold;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   button.login {
     color: white;
     opacity: 0.75;
     transition: opacity 250ms;
   }
-  button.login:hover {
+  button.login:is(:hover, :focus, :focus-within) {
     color: white;
     opacity: 1;
   }
@@ -267,9 +279,14 @@ button.sign-up {
   border-radius: 2.8rem;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   button.sign-up {
     background: white;
     color: var(--red-400);
+    transition: background 250ms, color 250ms;
+  }
+  button.sign-up:is(:hover, .active, :focus-within) {
+    background: var(--red-300);
+    color: white;
   }
 }

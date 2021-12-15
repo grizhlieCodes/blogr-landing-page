@@ -121,7 +121,8 @@ footer *:is(p, li, h4) {
 
 a:is(:focus, :focus-within),
 button:is(:focus, :focus-within) {
-  outline: black 2px solid;
+  outline: var(--blue-700) 2px solid;
+  outline-offset: 0.4rem;
 }
 
 /* 
@@ -225,7 +226,7 @@ section.hero {
   background: white;
   color: var(--red-500);
 }
-.hero__ctas > a.full:hover {
+.hero__ctas > a.full:is(:hover, .active, :focus-within) {
   background: var(--red-300);
   color: white;
 }
@@ -233,7 +234,7 @@ section.hero {
   border: white 0.1rem solid;
   color: white;
 }
-.hero__ctas > a.outline:hover {
+.hero__ctas > a.outline:is(:hover, .active, :focus-within) {
   background: white;
   color: var(--red-300);
 }
