@@ -119,7 +119,8 @@ footer *:is(p, li, h4) {
 
 /* Body */
 
-a:is(:focus, :focus-within), button:is(:focus, :focus-within){
+a:is(:focus, :focus-within),
+button:is(:focus, :focus-within) {
   outline: black 2px solid;
 }
 
@@ -187,6 +188,8 @@ section.hero {
 @media screen and (min-width: 950px) {
   section.hero {
     margin-bottom: 15rem;
+    background-size: 170rem, auto;
+    background-position: left 38% bottom 44%, center;
   }
 }
 
@@ -274,7 +277,13 @@ section.future {
 }
 
 .future__description-img-container img {
+  max-width: 60rem;
   width: 100%;
+}
+@media screen and (min-width: 950px) {
+  .future__description-img-container img {
+    max-width: unset;
+  }
 }
 
 @media screen and (min-width: 950px) {
@@ -322,25 +331,21 @@ section.infrastructure {
   display: grid;
   grid-template-columns: 2.4rem 1fr 2.4rem;
   grid-template-rows: 17.3rem max-content 4.7rem max-content 10.9rem;
-  margin-bottom: clamp(7.9rem, -25.2531rem + 34.8980vw, 25rem);
+  margin-bottom: clamp(7.9rem, -25.2531rem + 34.898vw, 25rem);
 }
 
 section.infrastructure::before {
   content: "";
   width: 100%;
   height: 100%;
-  background: url('../assets/images/bg-pattern-circles.svg'), linear-gradient(
-    135deg,
-    var(--gray-blue-900) 0%,
-    var(--gray-blue-800) 100%
-  );
+  background: url("../assets/images/bg-pattern-circles.svg"),
+    linear-gradient(135deg, var(--gray-blue-900) 0%, var(--gray-blue-800) 100%);
   background-position: center top -20rem, center;
   background-repeat: no-repeat, repeat;
   background-size: 60rem, auto;
   grid-column: 1/4;
   grid-row: 2/6;
   border-radius: 0 10rem;
-
 }
 
 @media screen and (min-width: 450px) {
@@ -349,7 +354,7 @@ section.infrastructure::before {
         2.4rem,
         1fr
       );
-      /* margin-bottom: 25rem; */
+    /* margin-bottom: 25rem; */
   }
 }
 
@@ -436,8 +441,6 @@ section.infrastructure::before {
   }
 }
 
-
-
 /* Decided to mainly use flexbox for this section after learning from the Future
 section. grid was just unnecessary since we didn't really utilise any important
 parts of it. */
@@ -461,27 +464,27 @@ section.benefits {
   align-items: center;
 }
 
-@media screen and (min-width: 950px){
-  .benefits__flex-container{
+@media screen and (min-width: 950px) {
+  .benefits__flex-container {
     flex-flow: row nowrap;
     text-align: left;
   }
 }
 
 .benefits__img-container {
-  width: 100%; 
+  width: 100%;
 }
 
 .benefits__img-container img {
   width: 100%;
 }
 
-@media screen and (min-width: 950px){
+@media screen and (min-width: 950px) {
   .benefits__img-container {
     min-width: 40rem;
     position: relative;
   }
-  
+
   .benefits__img-container img {
     position: absolute;
     width: 150%;
@@ -503,9 +506,6 @@ section.benefits {
   flex-flow: column nowrap;
   gap: 1.6rem;
 }
-
-
-
 
 /* !FOOTER FOOTER FOOTER FOOTER */
 
