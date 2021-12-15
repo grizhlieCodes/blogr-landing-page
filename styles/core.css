@@ -504,6 +504,7 @@ section.benefits {
   flex-flow: column nowrap;
   gap: 4rem;
   max-width: 54rem;
+  width: 100%;
 }
 
 @media screen and (min-width: 950px){
