@@ -570,11 +570,11 @@ footer.footer {
 
 /* Temporarily global fixes */
 
-section:not(.hero) p {
+section:not(.hero, .infrastructure) p {
   color: hsla(209, 12%, 34%, 1);
  
 }
 
-section *:is(h2, h3) {
+section:not(.infrastructure) *:is(h2, h3) {
   color: var(--blue-700);
 }
