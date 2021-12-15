@@ -563,3 +563,16 @@ footer.footer {
 .footer__links-category a {
   opacity: 0.75;
 }
+
+
+
+/* Temporarily global fixes */
+
+section p {
+  color: hsla(209, 12%, 34%, 1);
+ 
+}
+
+section *:is(h2, h3) {
+  color: var(--blue-700);
+}
