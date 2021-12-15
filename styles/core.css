@@ -506,6 +506,12 @@ section.benefits {
   max-width: 54rem;
 }
 
+@media screen and (min-width: 950px){
+  .benefits__description{
+    gap: 6.4rem;
+  }
+}
+
 .benefits__description-text {
   display: flex;
   flex-flow: column nowrap;
