@@ -1,6 +1,6 @@
 const mobileMenuButton = document.querySelector('button.header__menu-button')
-const navMenuCategoryButtons = [...document.querySelectorAll('button.header__menu-heading')]
-const navMenuCategoryLinkContainers = [...document.querySelectorAll('.header__menu-list')]
+const navButtons = [...document.querySelectorAll('button.header__menu-heading')]
+const navLinkContainers = [...document.querySelectorAll('.header__menu-list')]
 const allNavMenuLinks = document.querySelectorAll('header a')
 
 //Capitalized to show a constant value. For this project at least.
@@ -16,7 +16,7 @@ const createEventListenersForHeaderMenuActivation = () => {
         mobileMenuButton.classList.toggle('active')
     })
 
-    navMenuCategoryButtons.forEach((navMenuCategoryButton, index) => {
+    navButtons.forEach((navMenuCategoryButton, index) => {
         navMenuCategoryButton.addEventListener('click', () => {
             activateOrDeactivateClickedNavMenuCategoryButton(navMenuCategoryButton, index)
         })
@@ -48,19 +48,20 @@ const deactivateMobileMenuButton = () => {
 }
 
 const deactivateAllMenuHeadingButtons = () => {
-    navMenuCategoryButtons.forEach(btn => {
+    navButtons.forEach(btn => {
         btn.classList.remove('active')
         const menuList = btn.nextElementSibling
         clearMenuList(menuList)
     })
 }
 
-const deactivateSiblingNavMenuCategoryButtons = (clickedNavMenuCategoryButtonIndex) => {
-    const siblingNavMenuCategoryButtons = [...navMenuCategoryButtons.filter((b, i) => i !== clickedNavMenuCategoryButtonIndex)]
-    siblingNavMenuCategoryButtons.forEach((siblingNavMenuCategoryButton, index) => {
-        siblingNavMenuCategoryButton.classList.remove('active')
-        const navMenuCategoryLinkContainer = navMenuCategoryLinkContainers[index]
-        clearMenuList(navMenuCategoryLinkContainer)
+const clearSiblingButtons = (clickedBtnIndex) => {
+    navButtons.forEach((btn, index) => {
+        if(index !== clickedBtnIndex) {
+            btn.classList.remove('active')
+            const navLinkContainer = navLinkContainers[index]
+            clearMenuList(navLinkContainer)
+        }
     })
 };
 
@@ -76,31 +77,32 @@ const checkViewportWidth = () => {
 
 const activateOrDeactivateClickedNavMenuCategoryButton = (clickedNavMenuCategoryButton, index) => {
     const navMenuCategoryButtonIsActive = clickedNavMenuCategoryButton.classList.contains('active')
-    deactivateSiblingNavMenuCategoryButtons(index)
+    clearSiblingButtons(index)
     removeTabFunctionalityFromAllNavLinks()
 
     clickedNavMenuCategoryButton.classList.toggle('active')
-    const navMenuCategoryLinkContainer = navMenuCategoryLinkContainers[index]
-    const navMenuCategoryLinks = navMenuCategoryLinkContainer.querySelectorAll('a')
-    const navMenuCategoryLinksQuantity = navMenuCategoryLinks.length
-    const navMenuCategoryLinkHeight = parseInt(getComputedStyle(navMenuCategoryLinks[0]).height)
-    const navMenuCategoryLinkContainerStyles = window.getComputedStyle(navMenuCategoryLinkContainer)
-    const navMenuCategoryLinkContainerGapsTotalHeight = parseInt(navMenuCategoryLinkContainerStyles.rowGap) * (navMenuCategoryLinksQuantity - 1)
-    const {paddingTop, paddingBottom, marginTop} = LINK_CONTAINER_VALUES
+    const navLinkContainer = navLinkContainers[index]
+    const links = navLinkContainer.querySelectorAll('a')
+    const numberOfLinks = links.length
+    const numberOfGaps = numberOfLinks - 1
+    const linkHeight = parseInt(getComputedStyle(links[0]).height)
+    const navLinkContainerStyles = window.getComputedStyle(navLinkContainer)
+    const gapsTotalHeight = parseInt(navLinkContainerStyles.rowGap) * (numberOfGaps)
+    const navMenuCategoryLinksHeight = linkHeight * numberOfLinks
+    const {paddingTop, paddingBottom, marginTop} = LINK_CONTAINER_VALUES //customScrollHeight
     const isDesktopWidth = checkViewportWidth()
-    const navMenuCategoryLinksHeight = navMenuCategoryLinkHeight * navMenuCategoryLinksQuantity
-    const customScrollHeight = paddingBottom + paddingTop + navMenuCategoryLinkContainerGapsTotalHeight + navMenuCategoryLinksHeight
+    const customScrollHeight = paddingBottom + paddingTop + gapsTotalHeight + navMenuCategoryLinksHeight //custom scrollHeight
 
     // console.log({gap, paddingTop, paddingBottom, marginTop, navMenuCategoryLinksHeight, customScrollHeight})
     if (navMenuCategoryButtonIsActive) {
-        clearMenuList(navMenuCategoryLinkContainer)
+        clearMenuList(navLinkContainer)
     } else {
         const activateTabIndex = true
-        updateTabIndexOfSelectedLinks(activateTabIndex, navMenuCategoryLinks)
-        if(!isDesktopWidth) navMenuCategoryLinkContainer.style.marginTop = `${marginTop}px`
-        navMenuCategoryLinkContainer.style.paddingTop = `${paddingTop}px`
-        navMenuCategoryLinkContainer.style.paddingBottom = `${paddingBottom}px`
-        navMenuCategoryLinkContainer.style.maxHeight = `${customScrollHeight}px`
+        updateTabIndexOfSelectedLinks(activateTabIndex, links)
+        if(!isDesktopWidth) navLinkContainer.style.marginTop = `${marginTop}px`
+        navLinkContainer.style.paddingTop = `${paddingTop}px`
+        navLinkContainer.style.paddingBottom = `${paddingBottom}px`
+        navLinkContainer.style.maxHeight = `${customScrollHeight}px`
     }
 }
 
@@ -127,9 +129,9 @@ const createEventListenersForHeaderMenuClosing = () => {
         }
     })
 
-    navMenuCategoryLinkContainers.forEach((navMenuCategoryLinkContainer, index) => {
+    navLinkContainers.forEach((navMenuCategoryLinkContainer, index) => {
         navMenuCategoryLinkContainer.addEventListener('click', () => {
-            navMenuCategoryButtons[index].click()
+            navButtons[index].click()
         })
     })
 
