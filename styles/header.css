@@ -127,7 +127,6 @@ header.header {
   display: flex;
   gap: 0.8rem;
   align-items: center;
-  justify-content: center;
   color: var(--blue-700);
 }
 
@@ -197,18 +196,12 @@ header.header {
   }
 }
 
-.header__menu-heading picture {
-  height: 100%;
-  display: grid;
-  place-items: center;
-}
 .header__menu-heading img {
-  transform: translateY(-35%);
   transition: transform 250ms;
 }
 
 .header__menu-heading.active img {
-  transform: translateY(-35%) rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .header__menu-list *:is(a) {
